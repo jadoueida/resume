@@ -10,7 +10,7 @@ export function ClassicCertificates({ certificates }: ClassicCertificatesProps) 
         <section>
             <h2 className="text-xl font-serif font-bold mb-3 uppercase tracking-wide text-black">Certifications</h2>
             <div className="space-y-3">
-                {certificates.map((cert, index) => (
+                {certificates?.map((cert, index) => (
                     <div key={index}>
                         <div className="flex justify-between items-baseline mb-1">
                             <h3 className="text-base font-semibold text-black">{cert.name}</h3>
