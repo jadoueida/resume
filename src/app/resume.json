@@ -1,0 +1,136 @@
+{
+    "basics": {
+        "name": "Talia Oueida",
+        "location": {
+            "address": "Toronto, ON M5B 0B1"
+        },
+        "phone": "+1 647 673 6917",
+        "profiles": [
+            {
+                "network": "LinkedIn",
+                "url": "https://www.linkedin.com/in/talia-oueida-74a7291b5"
+            }
+        ]
+    },
+    "education": [
+        {
+            "institution": "University of Toronto",
+            "location": "Toronto, ON",
+            "area": "Economics for Management Studies",
+            "studyType": "Honours Bachelor of Arts",
+            "startDate": "2020-09-01",
+            "endDate": "Present",
+            "courses": [
+                "Applied Statistics",
+                "Psychology"
+            ]
+        },
+        {
+            "institution": "Sciences Po University",
+            "location": "Paris, France",
+            "studyType": "Exchange Program Certificate in Social Sciences & Humanities",
+            "startDate": "2023-01-01",
+            "endDate": "2023-05-01"
+        }
+    ],
+    "work": [
+        {
+            "name": "Broadgate Advisers",
+            "location": "Beirut, Lebanon",
+            "position": "Investment Banking Intern",
+            "startDate": "2022-06-01",
+            "endDate": "2022-08-01",
+            "highlights": [
+                "Engaged in financial modeling and market analysis of up to $70,000, gaining insights into investment strategies and business valuation techniques.",
+                "Facilitated client meetings and prepared detailed reports, refining communication and presentation skills."
+            ]
+        },
+        {
+            "name": "MG Holding",
+            "location": "Beirut, Lebanon",
+            "position": "Finance and Human Resources Intern",
+            "startDate": "2023-06-01",
+            "endDate": "2023-08-01",
+            "highlights": [
+                "Assisted in financial operations management, contributing to budgeting and forecasting processes to improve financial accuracy and reporting efficiency.",
+                "Supported human resources initiatives, including recruitment processes and employee engagement programs, enhancing organizational culture and staff satisfaction."
+            ]
+        }
+    ],
+    "certificates": [
+        {
+            "name": "Certificate in Alternative Investments",
+            "date": "2022-03-01",
+            "issuer": "Harvard Business School Online",
+            "location": "Cambridge, MA, USA",
+            "summary": "Developed a comprehensive understanding of alternative investments, including market assessment and portfolio diversification."
+        }
+    ],
+    "volunteer": [
+        {
+            "organization": "Red Cross",
+            "location": "Beirut, Lebanon",
+            "position": "Volunteer",
+            "startDate": "2018-01-01",
+            "endDate": "2019-03-01",
+            "highlights": [
+                "Helped educate young girls in Lebanese public schools about women's hygiene and healthful living through collaborative presentations."
+            ]
+        }
+    ],
+    "skills": [
+        {
+            "name": "Financial Analysis & Modeling",
+            "keywords": [
+                "Financial modeling",
+                "Valuation",
+                "Market analysis"
+            ]
+        },
+        {
+            "name": "Communication & Interpersonal Skills",
+            "keywords": [
+                "English",
+                "French",
+                "Arabic"
+            ]
+        },
+        {
+            "name": "Microsoft Excel",
+            "keywords": [
+                "PivotTables",
+                "VLOOKUP",
+                "INDEX/MATCH",
+                "Data Tables"
+            ]
+        },
+        {
+            "name": "Programming",
+            "keywords": [
+                "R Studio",
+                "Python"
+            ]
+        },
+        {
+            "name": "Organizational & Analytical Abilities",
+            "keywords": [
+                "PowerPoint presentations",
+                "Analytical tools for business assessments"
+            ]
+        }
+    ],
+    "languages": [
+        {
+            "language": "English",
+            "fluency": "Fluent"
+        },
+        {
+            "language": "French",
+            "fluency": "Fluent"
+        },
+        {
+            "language": "Arabic",
+            "fluency": "Fluent"
+        }
+    ]
+}
