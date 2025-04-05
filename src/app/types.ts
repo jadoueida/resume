@@ -5,6 +5,7 @@ export interface ResumeData {
             address: string;
         };
         phone: string;
+        email: string;
         profiles: {
             network: string;
             url: string;

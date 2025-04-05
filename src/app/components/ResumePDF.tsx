@@ -197,7 +197,7 @@ function ModernTemplate({ data }: { data: ResumeData }) {
             <View style={modernStyles.header}>
                 <Text style={modernStyles.name}>{data.basics.name}</Text>
                 <Text style={modernStyles.contact}>
-                    {data.basics.phone} | {data.basics.location.address}
+                    {data.basics.phone} | {data.basics.email} | {data.basics.location.address}
                 </Text>
                 {data.basics.profiles.map((profile, index) => (
                     <Text key={index} style={modernStyles.contact}>
@@ -299,7 +299,7 @@ function ClassicTemplate({ data }: { data: ResumeData }) {
             <View style={classicStyles.header}>
                 <Text style={classicStyles.name}>{data.basics.name}</Text>
                 <Text style={classicStyles.contact}>
-                    {data.basics.phone} | {data.basics.location.address}
+                    {data.basics.phone} | {data.basics.email} | {data.basics.location.address}
                 </Text>
                 {data.basics.profiles.map((profile, index) => (
                     <Text key={index} style={classicStyles.contact}>
