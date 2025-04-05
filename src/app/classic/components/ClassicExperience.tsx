@@ -21,11 +21,13 @@ export function ClassicExperience({ work }: ClassicExperienceProps) {
                         <div className="text-sm mb-2 text-black">
                             <span className="font-medium">{job.name}</span> | {job.location}
                         </div>
-                        <ul className="list-disc ml-4 text-sm space-y-1">
-                            {job.highlights.map((highlight, idx) => (
-                                <li key={idx} className="text-black">{highlight}</li>
-                            ))}
-                        </ul>
+                        {job.highlights && job.highlights.length > 0 && (
+                            <ul className="list-disc ml-4 text-sm space-y-1">
+                                {job.highlights.map((highlight, idx) => (
+                                    <li key={idx} className="text-black">{highlight}</li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
                 ))}
             </div>

@@ -18,6 +18,7 @@ export interface ResumeData {
         startDate: string;
         endDate: string;
         courses?: string[];
+        minors?: string[];
     }[];
     work: {
         name: string;

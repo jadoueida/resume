@@ -16,71 +16,75 @@ const modernStyles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         padding: 30,
         fontFamily: 'Helvetica',
+        flexDirection: 'row',
     },
     mainContent: {
-        width: '68%',
+        width: '65%',
+        paddingRight: 15,
     },
     sidebar: {
-        width: '28%',
-        position: 'absolute',
-        right: 30,
-        top: 120,
+        width: '35%',
+        paddingLeft: 15,
     },
     header: {
-        marginBottom: 20,
+        marginBottom: 15,
         borderBottomWidth: 1,
         borderBottomColor: '#e5e5e5',
         borderBottomStyle: 'solid',
-        paddingBottom: 10,
+        paddingBottom: 8,
+        width: '100%',
+        position: 'absolute',
+        top: 30,
+        left: 30,
     },
     name: {
-        fontSize: 24,
+        fontSize: 22,
         fontFamily: 'Helvetica-Bold',
-        marginBottom: 5,
+        marginBottom: 4,
         color: '#2d3748',
     },
     contact: {
-        fontSize: 10,
-        marginBottom: 3,
+        fontSize: 9,
+        marginBottom: 2,
         color: '#4a5568',
     },
     sectionTitle: {
-        fontSize: 14,
+        fontSize: 13,
         fontFamily: 'Helvetica-Bold',
-        marginBottom: 8,
-        marginTop: 12,
+        marginBottom: 6,
+        marginTop: 10,
         color: '#2d3748',
         textTransform: 'uppercase',
         borderBottomWidth: 1,
         borderBottomColor: '#e5e5e5',
         borderBottomStyle: 'solid',
-        paddingBottom: 4,
+        paddingBottom: 3,
     },
     jobTitle: {
-        fontSize: 12,
+        fontSize: 11,
         fontFamily: 'Helvetica-Bold',
         color: '#2d3748',
     },
     jobDetails: {
-        fontSize: 10,
-        marginBottom: 4,
+        fontSize: 9,
+        marginBottom: 2,
         color: '#4a5568',
     },
     bulletPoint: {
-        fontSize: 10,
+        fontSize: 9,
         marginBottom: 2,
-        paddingLeft: 10,
+        paddingLeft: 8,
         color: '#4a5568',
     },
     skillCategory: {
-        fontSize: 11,
+        fontSize: 10,
         fontFamily: 'Helvetica-Bold',
-        marginBottom: 3,
+        marginBottom: 2,
         color: '#2d3748',
     },
     skill: {
-        fontSize: 10,
-        marginBottom: 1,
+        fontSize: 9,
+        marginBottom: 2,
         color: '#4a5568',
     },
 });
@@ -89,70 +93,90 @@ const modernStyles = StyleSheet.create({
 const classicStyles = StyleSheet.create({
     page: {
         backgroundColor: '#FFFFFF',
-        padding: 40,
+        padding: 30,
         fontFamily: 'Helvetica',
     },
     header: {
-        marginBottom: 20,
+        marginBottom: 15,
         textAlign: 'center',
     },
     name: {
-        fontSize: 24,
+        fontSize: 20,
         fontFamily: 'Helvetica-Bold',
-        marginBottom: 5,
-    },
-    contact: {
-        fontSize: 10,
         marginBottom: 3,
     },
+    contact: {
+        fontSize: 8,
+        marginBottom: 1,
+    },
     section: {
-        marginBottom: 12,
+        marginBottom: 8,
     },
     sectionTitle: {
-        fontSize: 14,
+        fontSize: 12,
         fontFamily: 'Helvetica-Bold',
-        marginBottom: 8,
+        marginBottom: 6,
         borderBottomWidth: 1,
         borderBottomColor: '#000000',
         borderBottomStyle: 'solid',
         paddingBottom: 2,
     },
     jobTitle: {
-        fontSize: 12,
+        fontSize: 10,
         fontFamily: 'Helvetica-Bold',
     },
     jobDetails: {
-        fontSize: 10,
-        marginBottom: 4,
+        fontSize: 8,
+        marginBottom: 2,
     },
     bulletPoint: {
-        fontSize: 10,
-        marginBottom: 2,
-        paddingLeft: 10,
+        fontSize: 8,
+        marginBottom: 1,
+        paddingLeft: 8,
     },
     skillCategory: {
-        fontSize: 11,
+        fontSize: 9,
         fontFamily: 'Helvetica-Bold',
-        marginBottom: 2,
+        marginBottom: 1,
     },
     skill: {
-        fontSize: 10,
+        fontSize: 8,
         marginBottom: 1,
-        paddingLeft: 10,
+        paddingLeft: 8,
     },
     twoColumnGrid: {
         flexDirection: 'row',
-        gap: 15,
+        gap: 12,
+        marginTop: 8,
     },
     column: {
         flex: 1,
     },
     skillsSection: {
-        marginBottom: 8,
-    },
-    skillGroup: {
         marginBottom: 6,
     },
+    skillGroup: {
+        marginBottom: 4,
+    },
+    skillsRow: {
+        flexDirection: 'row',
+        gap: 15,
+        marginBottom: 4,
+    },
+    skillsColumn: {
+        flex: 1,
+    },
+    certificateSection: {
+        marginBottom: 8,
+    },
+    certificateTitle: {
+        fontSize: 9,
+        fontFamily: 'Helvetica-Bold',
+    },
+    certificateDetails: {
+        fontSize: 8,
+        marginBottom: 1,
+    }
 });
 
 interface ResumePDFProps {
@@ -161,6 +185,13 @@ interface ResumePDFProps {
 }
 
 function ModernTemplate({ data }: { data: ResumeData }) {
+    // Sort work experience by start date in descending order
+    const sortedWork = [...data.work].sort((a, b) => {
+        const dateA = new Date(a.startDate);
+        const dateB = new Date(b.startDate);
+        return dateB.getTime() - dateA.getTime();
+    });
+
     return (
         <Page size="LETTER" style={modernStyles.page}>
             <View style={modernStyles.header}>
@@ -176,75 +207,79 @@ function ModernTemplate({ data }: { data: ResumeData }) {
             </View>
 
             <View style={modernStyles.mainContent}>
-                <View style={{ marginBottom: 15 }}>
-                    <Text style={modernStyles.sectionTitle}>Experience</Text>
-                    {data.work.map((job, index) => (
-                        <View key={index} style={{ marginBottom: 10 }}>
-                            <Text style={modernStyles.jobTitle}>{job.position}</Text>
-                            <Text style={modernStyles.jobDetails}>
-                                {job.name} | {job.location} | {formatDate(job.startDate)} - {formatDate(job.endDate)}
-                            </Text>
-                            {job.highlights.map((highlight, idx) => (
-                                <Text key={idx} style={modernStyles.bulletPoint}>• {highlight}</Text>
-                            ))}
-                        </View>
-                    ))}
-                </View>
-
-                <View style={{ marginBottom: 15 }}>
-                    <Text style={modernStyles.sectionTitle}>Education</Text>
-                    {data.education.map((edu, index) => (
-                        <View key={index} style={{ marginBottom: 10 }}>
-                            <Text style={modernStyles.jobTitle}>{edu.institution}</Text>
-                            <Text style={modernStyles.jobDetails}>
-                                {edu.studyType}
-                                {edu.area ? ` in ${edu.area}` : ''} | {edu.location} | {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
-                            </Text>
-                            {edu.courses && (
-                                <Text style={modernStyles.bulletPoint}>
-                                    Relevant Courses: {edu.courses.join(', ')}
-                                </Text>
-                            )}
-                        </View>
-                    ))}
-                </View>
-
-                {data.certificates && (
+                <View style={{ marginTop: 80 }}>
                     <View style={{ marginBottom: 15 }}>
-                        <Text style={modernStyles.sectionTitle}>Certificates</Text>
-                        {data.certificates.map((cert, index) => (
-                            <View key={index} style={{ marginBottom: 5 }}>
-                                <Text style={modernStyles.jobTitle}>{cert.name}</Text>
+                        <Text style={modernStyles.sectionTitle}>Experience</Text>
+                        {sortedWork.map((job, index) => (
+                            <View key={index} style={{ marginBottom: 10 }}>
+                                <Text style={modernStyles.jobTitle}>{job.position}</Text>
                                 <Text style={modernStyles.jobDetails}>
-                                    {cert.issuer} | {formatDate(cert.date)}
+                                    {job.name} | {job.location} | {formatDate(job.startDate)} - {formatDate(job.endDate)}
                                 </Text>
-                                <Text style={modernStyles.bulletPoint}>{cert.summary}</Text>
+                                {job.highlights && job.highlights.length > 0 && job.highlights.map((highlight, idx) => (
+                                    <Text key={idx} style={modernStyles.bulletPoint}>• {highlight}</Text>
+                                ))}
                             </View>
                         ))}
                     </View>
-                )}
+
+                    <View style={{ marginBottom: 15 }}>
+                        <Text style={modernStyles.sectionTitle}>Education</Text>
+                        {data.education.map((edu, index) => (
+                            <View key={index} style={{ marginBottom: 8 }}>
+                                <Text style={modernStyles.jobTitle}>{edu.institution}</Text>
+                                <Text style={modernStyles.jobDetails}>
+                                    {edu.studyType}
+                                    {edu.area ? ` in ${edu.area}` : ''} | {edu.location} | {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
+                                </Text>
+                                {edu.minors && (
+                                    <Text style={modernStyles.bulletPoint}>
+                                        Minors: {edu.minors.join(', ')}
+                                    </Text>
+                                )}
+                            </View>
+                        ))}
+                    </View>
+
+                    {data.certificates && (
+                        <View style={{ marginBottom: 15 }}>
+                            <Text style={modernStyles.sectionTitle}>Certificates</Text>
+                            {data.certificates.map((cert, index) => (
+                                <View key={index} style={{ marginBottom: 5 }}>
+                                    <Text style={modernStyles.jobTitle}>{cert.name}</Text>
+                                    <Text style={modernStyles.jobDetails}>
+                                        {cert.issuer} | {formatDate(cert.date)}
+                                    </Text>
+                                    <Text style={modernStyles.bulletPoint}>{cert.summary}</Text>
+                                </View>
+                            ))}
+                        </View>
+                    )}
+                </View>
             </View>
 
             <View style={modernStyles.sidebar}>
-                <View style={{ marginBottom: 15 }}>
-                    <Text style={modernStyles.sectionTitle}>Skills</Text>
-                    {data.skills.map((skillGroup, index) => (
-                        <View key={index} style={{ marginBottom: 10 }}>
-                            <Text style={modernStyles.skillCategory}>{skillGroup.name}</Text>
-                            {skillGroup.keywords.map((skill, idx) => (
-                                <Text key={idx} style={modernStyles.skill}>• {skill}</Text>
-                            ))}
-                        </View>
-                    ))}
-                </View>
+                <View style={{ marginTop: 80 }}>
+                    <View style={{ marginBottom: 20 }}>
+                        <Text style={modernStyles.sectionTitle}>Skills</Text>
+                        {data.skills.map((skillGroup, index) => (
+                            <View key={index} style={{ marginBottom: 10 }}>
+                                <Text style={modernStyles.skillCategory}>{skillGroup.name}</Text>
+                                {skillGroup.keywords.map((skill, idx) => (
+                                    <Text key={idx} style={modernStyles.skill}>• {skill}</Text>
+                                ))}
+                            </View>
+                        ))}
+                    </View>
 
-                <View style={{ marginBottom: 15 }}>
-                    <Text style={modernStyles.sectionTitle}>Languages</Text>
-                    {data.languages.map((lang, index) => (
-                        <Text key={index} style={modernStyles.skill}>
-                            • {lang.language} ({lang.fluency})
-                        </Text>
-                    ))}
+                    <View style={{ marginBottom: 20 }}>
+                        <Text style={modernStyles.sectionTitle}>Languages</Text>
+                        {data.languages.map((lang, index) => (
+                            <Text key={index} style={modernStyles.skill}>
+                                • {lang.language} ({lang.fluency})
+                            </Text>
+                        ))}
+                    </View>
                 </View>
             </View>
         </Page>
@@ -252,6 +287,13 @@ function ModernTemplate({ data }: { data: ResumeData }) {
 }
 
 function ClassicTemplate({ data }: { data: ResumeData }) {
+    // Sort work experience by start date in descending order
+    const sortedWork = [...data.work].sort((a, b) => {
+        const dateA = new Date(a.startDate);
+        const dateB = new Date(b.startDate);
+        return dateB.getTime() - dateA.getTime();
+    });
+
     return (
         <Page size="LETTER" style={classicStyles.page}>
             <View style={classicStyles.header}>
@@ -268,13 +310,13 @@ function ClassicTemplate({ data }: { data: ResumeData }) {
 
             <View style={classicStyles.section}>
                 <Text style={classicStyles.sectionTitle}>Experience</Text>
-                {data.work.map((job, index) => (
-                    <View key={index} style={{ marginBottom: 8 }}>
+                {sortedWork.map((job, index) => (
+                    <View key={index} style={{ marginBottom: 4 }}>
                         <Text style={classicStyles.jobTitle}>{job.position}</Text>
                         <Text style={classicStyles.jobDetails}>
                             {job.name} | {job.location} | {formatDate(job.startDate)} - {formatDate(job.endDate)}
                         </Text>
-                        {job.highlights.map((highlight, idx) => (
+                        {job.highlights && job.highlights.length > 0 && job.highlights.map((highlight, idx) => (
                             <Text key={idx} style={classicStyles.bulletPoint}>• {highlight}</Text>
                         ))}
                     </View>
@@ -284,26 +326,52 @@ function ClassicTemplate({ data }: { data: ResumeData }) {
             <View style={classicStyles.section}>
                 <Text style={classicStyles.sectionTitle}>Education</Text>
                 {data.education.map((edu, index) => (
-                    <View key={index} style={{ marginBottom: 8 }}>
+                    <View key={index} style={{ marginBottom: 6 }}>
                         <Text style={classicStyles.jobTitle}>{edu.institution}</Text>
                         <Text style={classicStyles.jobDetails}>
                             {edu.studyType}
                             {edu.area ? ` in ${edu.area}` : ''} | {edu.location} | {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
                         </Text>
-                        {edu.courses && (
+                        {edu.minors && (
                             <Text style={classicStyles.bulletPoint}>
-                                Relevant Courses: {edu.courses.join(', ')}
+                                Minors: {edu.minors.join(', ')}
                             </Text>
                         )}
                     </View>
                 ))}
             </View>
 
-            <View style={classicStyles.twoColumnGrid}>
-                <View style={classicStyles.column}>
-                    <View style={classicStyles.skillsSection}>
-                        <Text style={classicStyles.sectionTitle}>Skills</Text>
-                        {data.skills.map((skillGroup, index) => (
+            {data.certificates && (
+                <View style={classicStyles.section}>
+                    <Text style={classicStyles.sectionTitle}>Certificates</Text>
+                    {data.certificates.map((cert, index) => (
+                        <View key={index} style={{ marginBottom: 2 }}>
+                            <Text style={classicStyles.certificateTitle}>{cert.name}</Text>
+                            <Text style={classicStyles.certificateDetails}>
+                                {cert.issuer} | {formatDate(cert.date)}
+                            </Text>
+                        </View>
+                    ))}
+                </View>
+            )}
+
+            <View style={classicStyles.section}>
+                <Text style={classicStyles.sectionTitle}>Skills</Text>
+                <View style={classicStyles.skillsRow}>
+                    {/* First column of skills */}
+                    <View style={classicStyles.skillsColumn}>
+                        {data.skills.slice(0, Math.ceil(data.skills.length / 2)).map((skillGroup, index) => (
+                            <View key={index} style={classicStyles.skillGroup}>
+                                <Text style={classicStyles.skillCategory}>{skillGroup.name}</Text>
+                                {skillGroup.keywords.map((skill, idx) => (
+                                    <Text key={idx} style={classicStyles.skill}>• {skill}</Text>
+                                ))}
+                            </View>
+                        ))}
+                    </View>
+                    {/* Second column of skills */}
+                    <View style={classicStyles.skillsColumn}>
+                        {data.skills.slice(Math.ceil(data.skills.length / 2)).map((skillGroup, index) => (
                             <View key={index} style={classicStyles.skillGroup}>
                                 <Text style={classicStyles.skillCategory}>{skillGroup.name}</Text>
                                 {skillGroup.keywords.map((skill, idx) => (
@@ -313,30 +381,16 @@ function ClassicTemplate({ data }: { data: ResumeData }) {
                         ))}
                     </View>
                 </View>
+            </View>
 
-                <View style={classicStyles.column}>
-                    <View style={classicStyles.skillsSection}>
-                        <Text style={classicStyles.sectionTitle}>Languages</Text>
-                        {data.languages.map((lang, index) => (
-                            <Text key={index} style={classicStyles.skill}>
-                                • {lang.language} ({lang.fluency})
-                            </Text>
-                        ))}
-                    </View>
-
-                    {data.certificates && (
-                        <View style={classicStyles.skillsSection}>
-                            <Text style={classicStyles.sectionTitle}>Certificates</Text>
-                            {data.certificates.map((cert, index) => (
-                                <View key={index} style={{ marginBottom: 4 }}>
-                                    <Text style={classicStyles.skillCategory}>{cert.name}</Text>
-                                    <Text style={classicStyles.skill}>
-                                        {cert.issuer} | {formatDate(cert.date)}
-                                    </Text>
-                                </View>
-                            ))}
-                        </View>
-                    )}
+            <View style={classicStyles.section}>
+                <Text style={classicStyles.sectionTitle}>Languages</Text>
+                <View style={classicStyles.skillsRow}>
+                    {data.languages.map((lang, index) => (
+                        <Text key={index} style={classicStyles.skill}>
+                            • {lang.language} ({lang.fluency})
+                        </Text>
+                    ))}
                 </View>
             </View>
         </Page>

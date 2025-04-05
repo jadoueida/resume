@@ -2,7 +2,7 @@
     "basics": {
         "name": "Talia Oueida",
         "location": {
-            "address": "Toronto, ON M5B 0B1"
+            "address": "Toronto, Ontario, Canada"
         },
         "phone": "+1 647 673 6917",
         "profiles": [
@@ -15,11 +15,15 @@
     "education": [
         {
             "institution": "University of Toronto",
-            "location": "Toronto, ON",
+            "location": "Toronto, Ontario, Canada",
             "area": "Economics for Management Studies",
             "studyType": "Honours Bachelor of Arts",
             "startDate": "2020-09-01",
             "endDate": "Present",
+            "minors": [
+                "Applied Statistics",
+                "Psychology"
+            ],
             "courses": [
                 "Applied Statistics",
                 "Psychology"
@@ -41,8 +45,8 @@
             "startDate": "2022-06-01",
             "endDate": "2022-08-01",
             "highlights": [
-                "Engaged in financial modeling and market analysis of up to $70,000, gaining insights into investment strategies and business valuation techniques.",
-                "Facilitated client meetings and prepared detailed reports, refining communication and presentation skills."
+                "Engaged in financial modeling and market analysis, gaining insights into investment strategies and business valuation techniques",
+                "Facilitated client meetings and prepared detailed reports, refining communication and presentation skills"
             ]
         },
         {
@@ -54,6 +58,35 @@
             "highlights": [
                 "Assisted in financial operations management, contributing to budgeting and forecasting processes to improve financial accuracy and reporting efficiency.",
                 "Supported human resources initiatives, including recruitment processes and employee engagement programs, enhancing organizational culture and staff satisfaction."
+            ]
+        },
+        {
+            "name": "John Taylor - Luxury Real Estate",
+            "location": "Dubai, United Arab Emirates",
+            "position": "Real Estate Agent",
+            "startDate": "2024-08-01",
+            "endDate": "2024-09-01",
+            "type": "Internship",
+            "isOnsite": true,
+            "highlights": [
+                "Assisted in luxury property marketing and listings management for high-end real estate in Dubai",
+                "Participated in exclusive property showings and client meetings to support sales initiatives",
+                "Developed understanding of luxury real estate market dynamics and client relationship management"
+            ]
+        },
+        {
+            "name": "Real Broker",
+            "location": "Toronto, Ontario, Canada",
+            "position": "Real Estate Agent",
+            "startDate": "2024-05-01",
+            "endDate": "2024-07-01",
+            "type": "Internship",
+            "isOnsite": true,
+            "highlights": [
+                "Assisted in marketing efforts by publishing listings for apartments available for rent and sale",
+                "Distributed flyers, made outreach calls, and attended property showings to support client engagement and sales initiatives",
+                "Supported the realtor in managing client relationships, coordinating transactions, and ensuring smooth communication",
+                "Developed communication and sales skills through direct interactions with clients and prospective buyers"
             ]
         }
     ],
@@ -116,6 +149,17 @@
             "keywords": [
                 "PowerPoint presentations",
                 "Analytical tools for business assessments"
+            ]
+        },
+        {
+            "name": "Real Estate & Client Relations",
+            "keywords": [
+                "Customer Relationship Management (CRM)",
+                "Real Estate Marketing",
+                "Property Showings",
+                "Client Communication",
+                "Sales Strategy",
+                "Behavioral Psychology in Sales"
             ]
         }
     ],
